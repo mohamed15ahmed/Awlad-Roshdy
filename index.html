@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5" />
+<title>أولاد رشدي Manager | Awlad Roshdy</title>
+<meta name="description" content="Awlad Roshdy Manager — إدارة أرشيف شركات الموردين وفواتير السوبر ماركت، يعمل بدون إنترنت." />
+
+<!--
+  Content-Security-Policy: this app is fully self-hosted (no CDNs, no
+  third-party trackers/ads). Everything (fonts, icons, code) ships in
+  this same folder so the policy below can stay this strict. If you
+  later wire Firebase (see js/firebase-init.js), you will need to add
+  its domains to connect-src, e.g.:
+  https://firestore.googleapis.com https://firebasestorage.googleapis.com
+  https://identitytoolkit.googleapis.com https://securetoken.googleapis.com
+
+  script-src has NO 'unsafe-inline'/'unsafe-eval' — that is what actually
+  blocks script injection (XSS), and the app never uses innerHTML with
+  user-supplied text (see js/utils.js `h()` and the security notes in
+  README.md). style-src allows 'unsafe-inline' only because the UI toggles
+  element.style.* a lot (show/hide banners, spinners, previews); every
+  such style is a fixed value written by this app's own code, never built
+  from user input, so it carries none of the risk inline *script* would.
+
+  frame-ancestors (clickjacking protection) and X-Frame-Options are
+  intentionally NOT set here because <meta> CSP silently ignores
+  frame-ancestors — browsers only honor it as a real HTTP response
+  header. Set it at your web server / hosting config instead (an example
+  Firebase Hosting `headers` block is in README.md).
+-->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  script-src 'self';
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' blob: data:;
+  font-src 'self';
+  connect-src 'self' blob: data:;
+  object-src 'none';
+  frame-src 'self' blob:;
+  base-uri 'self';
+  form-action 'self';
+  manifest-src 'self';
+  worker-src 'self';
+" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
+<meta name="referrer" content="no-referrer" />
+
+<meta name="theme-color" content="#2E7D32" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="أولاد رشدي" />
+
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32" />
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<!-- 11. Splash Screen -->
+<div id="splash-screen">
+  <img src="icons/icon-192.png" alt="" />
+  <div class="splash-title">أولاد رشدي Awlad Roshdy</div>
+  <div class="splash-sub">Manager · Smart Supermarket Management</div>
+</div>
+
+<!-- Login / first-run setup mounts here -->
+<div id="auth-container" style="display:none;"></div>
+
+<!-- Main app shell -->
+<div id="app-shell">
+  <header class="topbar">
+    <div class="app-brand">
+      <span>أولاد رشدي <small>Awlad Roshdy Manager</small></span>
+    </div>
+    <span id="conn-pill" class="conn-pill"></span>
+  </header>
+
+  <div id="cloud-banner" class="banner info" style="margin:8px 16px 0; display:none;"></div>
+
+  <div class="app-shell-inner">
+    <nav id="sidebar" class="sidebar"></nav>
+    <main id="screen-container"></main>
+  </div>
+
+  <nav id="bottom-nav" class="bottom-nav"></nav>
+  <div id="fab-backdrop" class="fab-backdrop"></div>
+  <div id="fab-menu" class="fab-menu"></div>
+  <button id="fab" class="fab" aria-label="إضافة"></button>
+</div>
+
+<div id="toast-region"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
